@@ -1,0 +1,4 @@
+**/__pycache__/*
+**/db.sqlite3
+**/todo.md
+**/worked_out_env/*

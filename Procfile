@@ -1,1 +1,1 @@
-web: echo $DJANGO_SETTINGS_MODULE; gunicorn worked_out.worked_out.wsgi
+web: cd worked_out; gunicorn worked_out.wsgi

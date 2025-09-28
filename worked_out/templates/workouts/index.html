@@ -1,0 +1,37 @@
+{% extends 'workouts/layout.html' %}
+
+
+{% block title %}
+All Clients
+{% endblock %}
+
+{% block content %}
+<h1>Current Clients</h1>
+
+<table class="table table-bordered table-striped text-center">
+  <thead class="thead-dark">
+    <tr>
+      <th>Name</th>
+      <th>Goals and Incentives</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for client in clients %}
+    <tr>
+      <td>{{client.first_name}} {{client.last_name}}</td>
+      <td>{{client.goals_incentives|default:"No notes"}}</td>
+      <td>
+        <a href="{% url 'new workout' client.id %}" class="btn btn-primary">New Workout</a>
+        <a href="{% url 'workout list by client' client.id %}" class="btn btn-success">Bio and Workouts</a>
+        <a href="{% url 'client update' client.id %}" class="btn btn-warning">Update Bio</a>
+        <a href="{% url 'delete client' client.id %}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+<a href="{% url 'new client' %}" class="btn btn-primary btn-lg" role="button">Add New Client</a>
+{% endblock %}

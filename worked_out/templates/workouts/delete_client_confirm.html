@@ -1,0 +1,15 @@
+{% extends 'workouts/layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Delete Client Record for {{ client.first_name }} {{ client.last_name }}
+{% endblock %}
+
+{% block content %}
+<h1>Are you sure you want to delete the records of {{ client.first_name }} {{ client.last_name }}?</h1>
+<form method="post" class="text-center">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

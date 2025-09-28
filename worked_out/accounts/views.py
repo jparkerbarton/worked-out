@@ -1,3 +1,1 @@
-from django.shortcuts import render
-
-# Create your views here.
+# no custom views needed since using stock views, see accounts.urls

@@ -1,0 +1,108 @@
+{% extends 'workouts/layout.html' %}
+
+
+{% block title %}
+Workouts for {{client.first_name}} {{client.last_name}}
+{% endblock %}
+
+
+{% block content %}
+<p><a href="{% url 'new workout' client.id %}" class="btn btn-primary">New Workout for {{client.first_name}}
+    {{client.last_name}}</a><a href="{% url 'client update' client.id %}" class="btn btn-warning">Update Bio</a></p>
+<h1>Client Bio for {{client.first_name}} {{client.last_name}}</h1>
+<table class="table table-bordered table-striped">
+  <colgroup>
+    <col style="width: 30%">
+    <col style="width: 70%">
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>Name:</td>
+      <td>{{client.first_name}} {{client.last_name}}</td>
+    </tr>
+    <tr>
+      <td>Birthdate:</td>
+      <td>{{client.birth_date}}</td>
+    </tr>
+    <tr>
+      <td>Weight (lbs.):</td>
+      <td>{{client.weight_lbs}}</td>
+    </tr>
+    <tr>
+      <td>Height (in.):</td>
+      <td>{{client.height_in}}</td>
+    </tr>
+    <tr>
+      <td>Waist (in.):</td>
+      <td>{{client.waist_in}}</td>
+    </tr>
+    <tr>
+      <td>BMI (kg/m<sup>2</sup>):</td>
+      <td>{{client.bmi}}</td>
+    </tr>
+    <tr>
+      <td>Resting Heart Rate (bpm):</td>
+      <td>{{client.resting_heart_rate_bpm}}</td>
+    </tr>
+    <tr>
+      <td>Blood Pressure (mmHg):</td>
+      <td>{{client.blood_pressure_mmhg}}</td>
+    </tr>
+    <tr>
+      <td>Medications:</td>
+      <td>{{client.meds}}</td>
+    </tr>
+    <tr>
+      <td>Has a doctor's release?</td>
+      <td>{{client.doctor_release}}</td>
+    </tr>
+    <tr>
+      <td>Medical History and Risks:</td>
+      <td>{{client.medical_history_risks}}</td>
+    </tr>
+    <tr>
+      <td>Is ambulatory?</td>
+      <td>{{client.ambulatory}}</td>
+    </tr>
+    <tr>
+      <td>Goals and Incentives:</td>
+      <td>{{client.goals_incentives}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>Previous Workouts for {{client.first_name}} {{client.last_name}}</h1>
+<div class="table-responsive">
+<table class="table table-bordered table-striped text-center">
+  <thead class="thead-dark">
+    <tr>
+      <th>Date</th>
+      <th>Duration (mins.)</th>
+      <th>Warmups</th>
+      <th>Large Muscle Group</th>
+      <th>Small Muscle Group</th>
+      <th>Cooldowns/Stretches</th>
+      <th>Accommodations and Other Notes</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for workout in workouts %}
+    <tr>
+      <td>{{workout.date}}</td>
+      <td>{{workout.duration_min}}</td>
+      <td>{{workout.warmups}}</td>
+      <td>{{workout.large_muscle_group_exercises}}</td>
+      <td>{{workout.small_muscle_group_exercises}}</td>
+      <td>{{workout.cooldowns}}</td>
+      <td>{{workout.other_notes|default:"No notes"}}</td>
+      <td>
+        <a href="{% url 'workout update' workout.id %}" class="btn btn-warning">View/Update Workout</a>
+        <a href="{% url 'delete workout' workout.id %}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

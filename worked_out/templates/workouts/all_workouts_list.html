@@ -1,0 +1,38 @@
+{% extends 'workouts/layout.html' %}
+
+
+{% block title %}
+All Workouts
+{% endblock %}
+
+
+{% block content %}
+<h1>All Workouts</h1>
+<table class="table table-bordered table-striped text-center">
+  <thead class="thead-dark">
+    <tr>
+      <th>Date</th>
+      <th>Name (Click for Bio)</th>
+      <th>Notes</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for workout in workouts %}
+    <tr>
+      <td>{{workout.date}}</td>
+      <td>
+        <a href="{% url 'workout list by client' workout.client_id %}" class="btn btn-primary">
+          {{workout.client.first_name}} {{workout.client.last_name}}
+        </a>
+      </td>
+      <td>{{workout.other_notes|default:"No notes"}}</td>
+      <td>
+        <a href="{% url 'workout update' workout.id %}" class="btn btn-warning">View/Update Workout</a>
+        <a href="{% url 'delete workout' workout.id %}" class="btn btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

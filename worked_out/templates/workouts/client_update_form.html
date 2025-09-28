@@ -1,0 +1,16 @@
+{% extends 'workouts/layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Editing Bio for {{ client.first_name }} {{ client.last_name }}
+{% endblock %}
+
+{% block content %}
+<h2>Editing Bio for {{ client.first_name }} {{ client.last_name }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit">Update Client Bio</button>
+</form>
+{% endblock %}

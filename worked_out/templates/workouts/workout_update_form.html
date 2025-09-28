@@ -1,0 +1,17 @@
+{% extends 'workouts/layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Editing Workout for {{ client.first_name }} {{ client.last_name }}
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'workout list by client' workout.client_id %}" class="btn btn-primary">← Back to Bio</a>
+<h2>Editing Workout for {{ client.first_name }} {{ client.last_name }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit">Update Workout</button>
+</form>
+{% endblock %}

@@ -16,12 +16,21 @@ class Client(models.Model):
     meds = models.TextField("Medications", null=True, blank=True)
     doctor_release = models.BooleanField("Has a doctor's release?", default=False)
     medical_history_risks = models.TextField("Medical History and Risk Factors", null=True, blank=True)
-    ambulatory = models.BooleanField("Can stand to work out?", default=True)
+    ambulatory = models.BooleanField("Can stand to work out?", default=False)
     goals_incentives = models.TextField("Goals and Incentives", null=True, blank=True)
+    
+    @property
+    def bmi(self):
+        if self.height_in and self.height_in != 0:
+            _bmi = round(self.weight_lbs / (self.height_in ** 2) * 703, 2)
+        else:
+            _bmi = None
+        return _bmi
 
 class Workout(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     date = models.DateField(null=True, blank=True, default=datetime.date.today)
+    duration_min = models.IntegerField(null=True, blank=True)
     warmups = models.TextField("Warmups", null=True, blank=True)
     large_muscle_group_exercises = models.TextField("Large Muscle Group Exercises", null=True, blank=True)
     small_muscle_group_exercises = models.TextField("Small Muscle Group Exercises", null=True, blank=True)

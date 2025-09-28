@@ -1,0 +1,16 @@
+{% extends 'workouts/layout.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+New Client
+{% endblock %}
+
+{% block content %}
+<h2>New Client Form</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit">Save Client</button>
+</form>
+{% endblock %}

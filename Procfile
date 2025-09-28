@@ -1,1 +1,1 @@
-web: gunicorn worked_out.wsgi
+web: pwd; ls -al; gunicorn worked_out.worked_out.wsgi

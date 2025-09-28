@@ -1,1 +1,1 @@
-web: pwd; ls -al; gunicorn worked_out.worked_out.wsgi
+web: echo $DJANGO_SETTINGS_MODULE; gunicorn worked_out.worked_out.wsgi

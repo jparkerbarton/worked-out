@@ -5,7 +5,7 @@ In overview, the "Worked Out" App is used by a personal trainer to keep track of
 
 #### Django and File Structure
 The writing of the project took place primarily in **Python 3.13.5** informed by **Django 4.2.24** (to mesh well with **Bootstrap 5.0.2**, see below). Because the Django web framework sets up many files on its own, the work was primarily in editing and fleshing out those files and their relations to one another. The folders within the project are these:
-* `worked_out` : Contains the settings file and the central URL clearinghouse.
+* `worked_out` : Contains the settings files and the central URL clearinghouse.
 * `workouts` : Contains the models, forms, views, and URL logic for tracking client and workout information.
 * `accounts` : Contains the models, views, and URL logic for authentication of the user (i.e., the trainer).
 * `templates` : Contains the HTML, CSS, and JavaScript for end user presentation of the app.
@@ -13,7 +13,7 @@ The writing of the project took place primarily in **Python 3.13.5** informed by
 Each of these folders' primary files will be treated in turn.
 
 #### The `worked_out` Folder
-* `settings.py` : This file defines many settings for Django to correctly implement the whole of the project. The primary settings necessary for the project to function were a listing of the installed apps (`crispy_forms`, `crispy_bootstrap5`, `accounts`, `workouts`), a key to the centralized `templates` folder (see below), and information pertinent to the built-in authentication features of Django (see `accounts` below).
+* `settings` Subfolder : These two files define many settings for Django to correctly implement the whole of the project. The primary settings necessary for the project to function were a listing of the installed apps (`crispy_forms`, `crispy_bootstrap5`, `accounts`, `workouts`), a key to the centralized `templates` folder (see below), and information pertinent to the built-in authentication features of Django (see `accounts` below).
 * `urls.py` : This file is the central router of URLs to their correct destinations. This is the most important of the three companion files of the same name, as it "includes" the URLs of the two apps in the other folders described below. It also defines the administrator URL necessary for debugging early in the project.
 
 #### The `workouts` Folder
@@ -35,6 +35,3 @@ Each of these folders' primary files will be treated in turn.
 * `delete_client_confirm.html` and `delete_workout_confirm.html` : These forms are simple two-button confirmation/cancellation forms for a delete action prompted by the user on another template.
 * `workout_list_by_client` : This template presents a special reading of the database, in which it queries all workouts but filters by a particular client. Thus, the user/trainer can "at a glance" see the biographical information (from the Client model) along with the workout information (from the Workout model) for a given client. Buttons are present to create a new workout for this client or to view/update/delete previous workouts. Apart from the index, this will likely be the most utilized template by the user.
 * `registration` Subfolder : The four templates contained here are the login, logout, and password change HTML pages. These templates are sparse and utilitarian, to serve as simple scaffolding on the main app.
-
-#### The Root Folder
-* `db.sqlite3` : This file is the backend database that contains tabular information about users/trainers, clients, and the workouts. It is interacted with via the forms described above. (Administrator tools can also access it to debug.)
